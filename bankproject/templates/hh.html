@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+  <label for="fname">NAME :</label>
+  <input type="text" id="fname" name="fname"><br>
+
+<!--  <label for="lname">Last name:</label>-->
+<!--  <input type="text" id="lname" name="lname"><br>-->
+
+      <label for="fname">DOB  :</label>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="fname">GENDER :</label>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="fname">PHONE NUMBER :</label>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="fname">EMAIL :</label>
+  <input type="text" id="fname" name="fname"><br>
+   <label for="fname">MATERIALS PROVIDE:</label><br>
+     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+<label for="vehicle1">Debit card</label><br>
+<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+<label for="vehicle2"> Cheque book</label><br>
+<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+<label for="vehicle3"> Credit card</label><br>
+
+
+</form>
+<form name="form1" id="form1" >
+  DISTRICT: <select name="subject" id="subject">
+    <option value="" selected="selected">Select subject</option>
+  </select>
+  <br><br>
+  BRANCH: <select name="topic" id="topic">
+    <option value="" selected="selected">Please select subject first</option>
+  </select>
+  <br><br>
+  Account Type: <select name="chapter" id="chapter">
+    <option value="" selected="selected">Please select topic first</option>
+</select>
+  <br><br>
+    <button onclick="myFunction()">SUBMIT</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Application accepted";
+}
+
+</script>
+  <a href="home">HOME</a>
+
+<div>
+<button>LOGOUT
+    </button>
+</div>
+<!--<form name="form1" id="form1" action="/action_page.php">-->
+
+<!--  <input type="submit" value="Submit">-->
+</form>
+<script>
+
+ var subjectObject = {
+  "Calicut": {
+    "Koyilandy": ["Savings Account ","current Account"],
+    "kollam": ["Savings Account ","current Account"],
+    "vadakara": ["Savings Account ","current Account"]
+  },
+  "Ernakulam": {
+    "Aluva": ["Savings Account ","current Account"],
+    "Edapally": ["Savings Account ","current Account"]
+  },
+    "Kannur": {
+    "Thalassery": ["Savings Account ","current Account"],
+    "Mahi": ["Savings Account ","current Account"],
+    "Payyunur": ["Savings Account ","current Account"]
+}
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    chapterSel.length = 1;
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+ }
+}
+
+
+
+</script>
+
+</form>
+</body>
+</html>

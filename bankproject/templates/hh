@@ -1,0 +1,84 @@
+
+<form name="form1" id="form1" action="/action_page.php">
+  Subjects: <select name="subject" id="subject">
+    <option value="" selected="selected">Select subject</option>
+  </select>
+  <br><br>
+  Topics: <select name="topic" id="topic">
+    <option value="" selected="selected">Please select subject first</option>
+  </select>
+  <br><br>
+  Chapters: <select name="chapter" id="chapter">
+    <option value="" selected="selected">Please select topic first</option>
+  </select>
+  <br><br>
+
+  <form method="post" name="FrmEnquiry" id="FrmEnquiry" action="" onsubmit="sendEnquiryform();">
+    <input name="name" id="name" required="required" placeholder="Your Name">
+    <input name="email" id="email" type="email" required="required" placeholder="Your Email">
+
+    <div class="clearfix"> </div>
+    <textarea name="message" id="message" cols="20" rows="5" required="required" placeholder="Message"></textarea>
+    <div class="submit">
+        <input id="submit" name="submit" type="submit" value="Submit">
+    </div>
+</form>
+
+<span id="sucessMessage"> </span>
+<script type="text/javascript">
+    function sendEnquiryform(){
+        var name=$('#name').val();
+        var email=$('#email').val();
+        var message=$('#message').val();
+        $.post("send_mail.php",'name='+name+'&email='+email'&message='+message,function(result,status,xhr) {
+                if( status.toLowerCase()=="error".toLowerCase() )
+                { alert("An Error Occurred.."); }
+                else {
+                    //alert(result);
+                    $('#sucessMessage').html(result);
+                }
+            })
+            .fail(function(){ alert("something went wrong. Please try again") });
+    }
+</script>
+
+
+var subjectObject = {
+
+  "Front-end": {
+    "HTML": ["Links", "Images", "Tables", "Lists"],
+    "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
+    "JavaScript": ["Variables", "Operators", "Functions", "Conditions"]
+  },
+  "Back-end": {
+    "PHP": ["Variables", "Strings", "Arrays"],
+    "SQL": ["SELECT", "UPDATE", "DELETE"]
+  }
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    chapterSel.length = 1;
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+}
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--  <div class="dropdown">-->
+<!--    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example-->
+<!--    <span class="caret"></span></button>-->
+<!--    <ul class="dropdown-menu">-->
+<!--      <li><a href="#">HTML</a></li>-->
+<!--      <li><a href="#">CSS</a></li>-->
+<!--      <li><a href="#">JavaScript</a></li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
+<form action="login" method="post">
+      {% csrf_token %}
+
+     <input type="text" name="username" placeholder="username"  ><br>
+     <input type="password" name="password" placeholder="password"><br>
+</form>
+<a href="newpage">
+     <input type="submit">
+</a>
+    <br>
+     <a href="register">Register</a>
+
+
+
+
+
+
+
+
+</body>
+</html>
+
